@@ -28,6 +28,12 @@ node --check public/app.js
 node scripts/scan.mjs JUP
 ```
 
+## Submission Media
+
+- Demo video: `media/demo.mp4`
+- Pitch video: `media/pitch.mp4`
+- Project logo: `media/logo.png`
+
 ## What It Uses
 
 - `GET https://api.jup.ag/tokens/v2/search?query=...`
