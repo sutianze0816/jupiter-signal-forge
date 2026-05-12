@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jupiter Signal Forge</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="topbar" aria-label="Signal controls">
+        <div>
+          <p class="kicker">Jupiter Signal Forge</p>
+          <h1>Token signals into Trigger V2 drafts</h1>
+        </div>
+        <form id="scan-form" class="search">
+          <input id="query" name="query" value="JUP" autocomplete="off" aria-label="Token search" />
+          <button type="submit">Scan</button>
+        </form>
+      </section>
+
+      <section class="status-grid" aria-label="Scan metadata">
+        <div>
+          <span>Mode</span>
+          <strong id="mode">loading</strong>
+        </div>
+        <div>
+          <span>Generated</span>
+          <strong id="generated">-</strong>
+        </div>
+        <div>
+          <span>APIs</span>
+          <strong>Tokens + Price</strong>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <div class="results" id="results" aria-live="polite"></div>
+        <aside class="ticket" aria-label="Trigger draft">
+          <div class="ticket-head">
+            <p class="kicker">Decision Ticket</p>
+            <h2 id="ticket-title">Select a signal</h2>
+          </div>
+          <p id="ticket-summary" class="summary">The top ranked token is selected after the first scan.</p>
+          <pre id="ticket-code">{}</pre>
+        </aside>
+      </section>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

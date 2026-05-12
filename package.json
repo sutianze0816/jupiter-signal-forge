@@ -1,0 +1,13 @@
+{
+  "name": "jupiter-signal-forge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "scan": "node scripts/scan.mjs JUP"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

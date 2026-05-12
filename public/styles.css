@@ -1,0 +1,286 @@
+:root {
+  color-scheme: light;
+  --ink: #10131a;
+  --muted: #667085;
+  --line: #d7dce5;
+  --paper: #ffffff;
+  --field: #f6f8fb;
+  --teal: #008c89;
+  --blue: #255fd2;
+  --amber: #b86b00;
+  --rose: #bb2a4a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #eef2f7;
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0;
+}
+
+.topbar {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 390px);
+  gap: 20px;
+  align-items: end;
+  padding: 18px 0 20px;
+}
+
+.kicker {
+  margin: 0 0 6px;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: 34px;
+  line-height: 1.08;
+}
+
+h2 {
+  margin-bottom: 0;
+  font-size: 20px;
+}
+
+.search {
+  display: grid;
+  grid-template-columns: 1fr 96px;
+  height: 44px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.search input {
+  min-width: 0;
+  border: 0;
+  padding: 0 14px;
+  background: transparent;
+  color: var(--ink);
+  outline: none;
+}
+
+.search button {
+  border: 0;
+  border-left: 1px solid var(--line);
+  background: var(--ink);
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.status-grid div {
+  min-width: 0;
+  padding: 14px;
+  background: var(--paper);
+}
+
+.status-grid span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-grid strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 410px;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.results {
+  display: grid;
+  gap: 10px;
+}
+
+.signal {
+  appearance: none;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) 140px;
+  gap: 14px;
+  align-items: center;
+  min-height: 92px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.signal:hover,
+.signal.active {
+  border-color: var(--blue);
+}
+
+.logo {
+  width: 52px;
+  height: 52px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--field);
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.name {
+  min-width: 0;
+}
+
+.name strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 18px;
+}
+
+.name span,
+.metrics span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.chip {
+  padding: 4px 7px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.metrics {
+  display: grid;
+  gap: 6px;
+  text-align: right;
+}
+
+.metrics strong {
+  font-size: 18px;
+}
+
+.ticket {
+  position: sticky;
+  top: 18px;
+  align-self: start;
+  min-width: 0;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.ticket-head {
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.summary {
+  min-height: 64px;
+  margin: 0;
+  padding: 16px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+pre {
+  overflow: auto;
+  min-height: 360px;
+  max-height: 560px;
+  margin: 0;
+  padding: 16px;
+  border-top: 1px solid var(--line);
+  background: #0f172a;
+  color: #dbeafe;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.buy {
+  color: var(--teal);
+}
+
+.sell {
+  color: var(--amber);
+}
+
+.wait {
+  color: var(--rose);
+}
+
+@media (max-width: 880px) {
+  .topbar,
+  .workspace,
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .signal {
+    grid-template-columns: 44px minmax(0, 1fr);
+  }
+
+  .metrics {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: left;
+  }
+
+  .ticket {
+    position: static;
+  }
+}
