@@ -1,0 +1,13 @@
+{
+  "title": "Team-scoped API key rotation",
+  "requirements": [
+    "Only team admins can rotate API keys.",
+    "The old key becomes invalid immediately after rotation.",
+    "An audit event records the actor, team, key, and timestamp.",
+    "Rotations are limited to three per hour per team.",
+    "Cross-team key IDs return 404 without leaking key existence."
+  ],
+  "expectedDemoVerdict": "hold",
+  "expectedDemoCoverage": 48,
+  "notes": "The complete diff and test evidence are available from GET /api/sample."
+}

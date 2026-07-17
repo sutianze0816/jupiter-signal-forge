@@ -3,50 +3,172 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Jupiter Signal Forge</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/styles.css" />
+    <meta name="description" content="ChangeProof maps requirements to code and test evidence using GPT-5.6." />
+    <meta name="theme-color" content="#101312" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>ChangeProof</title>
   </head>
   <body>
-    <main class="shell">
-      <section class="topbar" aria-label="Signal controls">
-        <div>
-          <p class="kicker">Jupiter Signal Forge</p>
-          <h1>Token signals into Trigger V2 drafts</h1>
-        </div>
-        <form id="scan-form" class="search">
-          <input id="query" name="query" value="JUP" autocomplete="off" aria-label="Token search" />
-          <button type="submit">Scan</button>
-        </form>
-      </section>
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="ChangeProof home">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span>ChangeProof</span>
+      </a>
+      <div class="topbar-actions">
+        <span class="model-badge"><span class="status-dot"></span><span id="modelLabel">Checking runtime</span></span>
+        <a class="repo-link" href="https://github.com/sutianze0816/changeproof" target="_blank" rel="noreferrer">Repository</a>
+      </div>
+    </header>
 
-      <section class="status-grid" aria-label="Scan metadata">
-        <div>
-          <span>Mode</span>
-          <strong id="mode">loading</strong>
-        </div>
-        <div>
-          <span>Generated</span>
-          <strong id="generated">-</strong>
-        </div>
-        <div>
-          <span>APIs</span>
-          <strong>Tokens + Price</strong>
-        </div>
-      </section>
-
-      <section class="workspace">
-        <div class="results" id="results" aria-live="polite"></div>
-        <aside class="ticket" aria-label="Trigger draft">
-          <div class="ticket-head">
-            <p class="kicker">Decision Ticket</p>
-            <h2 id="ticket-title">Select a signal</h2>
+    <main class="app-shell">
+      <aside class="input-panel" aria-label="Change evidence inputs">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Evidence input</p>
+            <h1>Audit a change</h1>
           </div>
-          <p id="ticket-summary" class="summary">The top ranked token is selected after the first scan.</p>
-          <pre id="ticket-code">{}</pre>
-        </aside>
+          <button class="quiet-button" id="loadSample" type="button">Load sample</button>
+        </div>
+
+        <div class="mode-control" role="group" aria-label="Analysis mode">
+          <button class="mode-button active" data-mode="demo" type="button">
+            <span>Demo</span>
+            <small>No key needed</small>
+          </button>
+          <button class="mode-button" data-mode="live" id="liveMode" type="button">
+            <span>Live</span>
+            <small>GPT-5.6</small>
+          </button>
+        </div>
+
+        <form id="auditForm">
+          <label class="field compact-field">
+            <span>Change title</span>
+            <input id="titleInput" name="title" autocomplete="off" placeholder="e.g. Rotate API keys" />
+          </label>
+
+          <label class="field">
+            <span>Acceptance criteria <b>Required</b></span>
+            <textarea id="requirementsInput" name="requirements" rows="7" placeholder="One requirement per line"></textarea>
+            <small id="criteriaCount">0 criteria</small>
+          </label>
+
+          <label class="field">
+            <span>Code diff <b>Required</b></span>
+            <textarea id="diffInput" name="diff" rows="12" spellcheck="false" placeholder="Paste a unified diff"></textarea>
+            <small id="diffCount">0 changed lines</small>
+          </label>
+
+          <label class="field">
+            <span>Test evidence</span>
+            <textarea id="testsInput" name="tests" rows="6" spellcheck="false" placeholder="Paste test output, test names, or CI evidence"></textarea>
+            <small>Optional, but raises confidence</small>
+          </label>
+
+          <button class="primary-button" id="runAudit" type="submit">
+            <span class="button-label">Run evidence audit</span>
+            <span class="button-meta">Ctrl Enter</span>
+          </button>
+        </form>
+      </aside>
+
+      <section class="workspace" aria-live="polite">
+        <div class="workspace-header">
+          <div>
+            <p class="eyebrow">Verification workspace</p>
+            <h2 id="reportTitle">Evidence report</h2>
+          </div>
+          <div class="report-actions">
+            <button class="quiet-button" id="exportMarkdown" type="button" disabled>Export .md</button>
+            <button class="quiet-button" id="exportJson" type="button" disabled>Export .json</button>
+          </div>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <div class="scan-visual" aria-hidden="true">
+            <span class="scan-line one"></span>
+            <span class="scan-line two"></span>
+            <span class="scan-line three"></span>
+            <span class="scan-check">✓</span>
+          </div>
+          <h2>Building the evidence map</h2>
+          <p>ChangeProof is loading a complete sample audit so you can inspect the product immediately.</p>
+        </div>
+
+        <div id="loadingState" class="loading-state" hidden>
+          <div class="loader-track"><span></span></div>
+          <p id="loadingText">Mapping requirements to implementation...</p>
+        </div>
+
+        <div id="reportView" hidden>
+          <section class="score-strip" aria-label="Audit scores">
+            <div class="score-main">
+              <div class="score-ring" id="scoreRing"><strong id="coverageScore">0</strong><span>%</span></div>
+              <div>
+                <p>Requirement coverage</p>
+                <h3 id="verdictLabel">Hold</h3>
+              </div>
+            </div>
+            <div class="score-item">
+              <span>Change risk</span>
+              <strong id="riskLevel">High</strong>
+            </div>
+            <div class="score-item">
+              <span>Evidence confidence</span>
+              <strong id="confidenceScore">0%</strong>
+            </div>
+            <div class="score-item">
+              <span>Engine</span>
+              <strong id="engineLabel">Demo</strong>
+            </div>
+          </section>
+
+          <section class="summary-band">
+            <span class="summary-icon" aria-hidden="true">CP</span>
+            <div>
+              <p class="eyebrow">Audit conclusion</p>
+              <p id="summaryText"></p>
+            </div>
+          </section>
+
+          <nav class="tabs" aria-label="Report sections">
+            <button class="tab active" data-tab="coverage" type="button">Coverage <span id="criteriaTotal">0</span></button>
+            <button class="tab" data-tab="risks" type="button">Risks <span id="riskTotal">0</span></button>
+            <button class="tab" data-tab="tests" type="button">Test gaps <span id="testTotal">0</span></button>
+            <button class="tab" data-tab="actions" type="button">Next actions</button>
+          </nav>
+
+          <div class="tab-panel active" id="coveragePanel" data-panel="coverage">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Acceptance criterion</th><th>Status</th><th>Evidence</th><th>Confidence</th></tr>
+                </thead>
+                <tbody id="criteriaRows"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="risksPanel" data-panel="risks">
+            <div class="section-heading"><h3>Risk register</h3><p>Ordered by severity and blast radius.</p></div>
+            <div class="risk-list" id="riskList"></div>
+          </div>
+
+          <div class="tab-panel" id="testsPanel" data-panel="tests">
+            <div class="section-heading"><h3>Missing proof</h3><p>Targeted tests that would most increase confidence.</p></div>
+            <div class="gap-list" id="gapList"></div>
+          </div>
+
+          <div class="tab-panel" id="actionsPanel" data-panel="actions">
+            <div class="section-heading"><h3>Merge path</h3><p>The shortest route from uncertainty to evidence.</p></div>
+            <ol class="action-list" id="actionList"></ol>
+          </div>
+        </div>
       </section>
     </main>
-    <script type="module" src="/app.js"></script>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script type="module" src="./app.js"></script>
   </body>
 </html>

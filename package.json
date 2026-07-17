@@ -1,11 +1,13 @@
 {
-  "name": "jupiter-signal-forge",
+  "name": "changeproof",
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "description": "Evidence-driven verification for AI-generated code changes, powered by GPT-5.6.",
   "scripts": {
     "start": "node server.mjs",
-    "scan": "node scripts/scan.mjs JUP"
+    "dev": "node --watch server.mjs",
+    "test": "node --test"
   },
   "engines": {
     "node": ">=20"
