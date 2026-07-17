@@ -1,0 +1,12 @@
+RISK REGISTER + TEST GAPS
+
+CRITICAL  Any authenticated user can rotate a team key
+HIGH      Unlimited rotations enable disruption
+MEDIUM    Audit event cannot identify the actor
+
+Targeted proof before merge
+• Reject non-admin team members
+• Enforce the fourth rotation within one hour
+• Assert actor ID and timestamp in the audit event
+
+Export the report as Markdown or JSON for PRs and CI.

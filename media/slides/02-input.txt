@@ -1,0 +1,13 @@
+EVIDENCE INPUT
+
+API key rotation
+
+Acceptance criteria
+01  Only team admins can rotate API keys
+02  Old keys are revoked immediately
+03  Audit events include actor, team, key, and time
+04  Limit rotations to three per hour
+05  Cross-team access returns 404
+
+Evidence supplied
+Unified code diff + two passing tests

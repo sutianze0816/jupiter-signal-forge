@@ -1,0 +1,16 @@
+BUILT WITH CODEX
+
+Challenge research
+Schema-first architecture
+Product interface
+GPT-5.6 integration
+Focused tests
+HTTPS deployment
+Submission materials
+
+LIVE DEMO
+keliu.xmyingshiyun.com/changeproof/
+
+SOURCE
+github.com/sutianze0816/jupiter-signal-forge
+branch: openai-build-week-changeproof

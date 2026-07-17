@@ -1,5 +1,8 @@
 .env
 .DS_Store
+media/narration.aiff
+media/video-frames/
+media/changeproof-demo-1080p.mp4
 node_modules/
 coverage/
 *.log

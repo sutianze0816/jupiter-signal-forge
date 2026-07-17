@@ -1,0 +1,12 @@
+ACTUAL AUDIT RESULT
+
+48% COVERAGE       HIGH RISK       HOLD
+
+MISSING   Admin authorization
+COVERED   Immediate key revocation
+PARTIAL   Audit event attribution
+MISSING   Per-team rate limiting
+COVERED   Cross-team privacy
+
+Passing tests were not enough.
+Public endpoint verified: /changeproof/api/analyze

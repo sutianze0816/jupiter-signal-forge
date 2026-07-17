@@ -12,6 +12,8 @@ The tool is built for teams using coding agents. Generated code can look plausib
 
 Open the hosted demo: **https://keliu.xmyingshiyun.com/changeproof/**
 
+Review the narrated 2:09 demo artifact: [`media/changeproof-demo.mp4`](media/changeproof-demo.mp4)
+
 Requirements: Node.js 20 or newer. There are no runtime package dependencies.
 
 ```bash

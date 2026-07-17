@@ -1,0 +1,13 @@
+GPT-5.6 LIVE PATH
+
+Requirements + diff + test output
+                 ↓
+OpenAI Responses API  ·  model: gpt-5.6
+                 ↓
+Strict JSON Schema Structured Output
+                 ↓
+Coverage matrix + risks + gaps + merge path
+
+The hosted experience defaults to deterministic Demo mode.
+Live mode activates only when a server-side OPENAI_API_KEY is present.
+The API key is never sent to the browser.

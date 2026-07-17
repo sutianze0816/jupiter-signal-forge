@@ -1,0 +1,13 @@
+AI coding agents can produce a convincing diff in minutes. The hard part is proving that the change actually satisfies the product requirements. ChangeProof turns requirements, code, and test evidence into one auditable evidence map.
+
+This demo uses a realistic API key rotation change. The requirements include admin-only access, immediate revocation, a complete audit event, rate limiting, and cross-team privacy. The diff and two passing tests look reasonable at first glance.
+
+ChangeProof maps every promise to implementation and test evidence. The public demo returns a forty-eight percent coverage score, high risk, and a hold verdict. The old key is revoked and cross-team access returns four-oh-four, but the change never checks for an admin role, has no rate limiter, and omits the actor from the audit trail. Passing tests were not enough.
+
+Each requirement receives a status, an evidence statement, and a confidence score. Risks include a precise location and mitigation. The test-gap view proposes the negative paths that would most increase confidence before merge. Teams also receive a short action plan and can export the complete audit as Markdown or JSON for a pull request or CI artifact.
+
+The hosted experience defaults to deterministic Demo mode, so judges can test the complete workflow without sharing a credential. Live mode uses GPT-5.6 through the OpenAI Responses API. GPT-5.6 reasons across the complete requirement, diff, and test context, while strict Structured Outputs guarantee a stable report contract.
+
+Codex accelerated the entire build: challenge research, schema-first architecture, interface implementation, GPT-5.6 integration, tests, deployment, and submission materials. The source includes the exact prompt, JSON schema, fallback engine, and focused tests.
+
+ChangeProof gives teams evidence, not vibes, for AI-generated changes. The public demo is live now, the repository is open for review, and the project is ready for deeper GitHub and continuous integration workflows.
