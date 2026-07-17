@@ -15,7 +15,7 @@ Open the hosted demo: **https://keliu.xmyingshiyun.com/changeproof/**
 Requirements: Node.js 20 or newer. There are no runtime package dependencies.
 
 ```bash
-git clone https://github.com/sutianze0816/changeproof.git
+git clone --branch openai-build-week-changeproof --single-branch https://github.com/sutianze0816/jupiter-signal-forge.git changeproof
 cd changeproof
 npm start
 ```
