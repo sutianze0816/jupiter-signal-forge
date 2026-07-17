@@ -76,6 +76,7 @@ Codex, GPT-5.6, OpenAI Responses API, Structured Outputs, Node.js, JavaScript, H
 
 ## Required links
 
+- Devpost project: https://devpost.com/software/changeproof-jc0b52
 - Code repository: https://github.com/sutianze0816/jupiter-signal-forge/tree/openai-build-week-changeproof
 - Demo video: https://youtu.be/w7MBDbXMNkU
 - Live demo: https://keliu.xmyingshiyun.com/changeproof/

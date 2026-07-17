@@ -14,6 +14,8 @@ Open the hosted demo: **https://keliu.xmyingshiyun.com/changeproof/**
 
 Watch the public YouTube demo: **https://youtu.be/w7MBDbXMNkU**
 
+View the submitted Devpost project: **https://devpost.com/software/changeproof-jc0b52**
+
 Review the narrated 2:09 demo artifact: [`media/changeproof-demo.mp4`](media/changeproof-demo.mp4)
 
 Requirements: Node.js 20 or newer. There are no runtime package dependencies.
